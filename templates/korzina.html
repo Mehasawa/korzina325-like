@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CART</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{% static '1.js' %}" defer></script>
+</head>
+<body>
+    <table>
+        {% for one in items %}
+            <tr>
+                <td>{{ one.tovar.opis }}</td>
+
+                <td>
+                    <a href="{% url 'count' -1 one.id %}">
+                        <button> - </button>
+                    </a>
+                </td>
+                <td>{{ one.count }}шт</td>
+                <td>
+                    <a href="{% url 'count' 1 one.id %}">
+                        <button> + </button>
+                    </a>
+                </td>
+
+                <td>Цена: {{ one.summa }}р</td>
+                <td>Всего: {{ one.calcSumma }}р</td>
+                <td>
+                    <a href="{% url 'del' one.id %}">
+                         <button>удалить</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h2>Сумма {{ itog }}р</h2>
+    <button id="fin">Оформить заказ</button>
+    <div id="forma" hidden>
+        <form action="" novalidate method="post" id="forma1">
+            {% csrf_token %}
+{#            <label for="adres">Напишите город</label>#}
+{#            <input type="text" id="adres">#}
+{#            <label for="name">Имя</label>#}
+{#            <input type="text" id="name">#}
+{#            <label for="tel">Телефон</label>#}
+{#            <input type="text" id="tel">#}
+            {% for f in myform %}
+                <div>{{ f.label_tag }}</div>
+                <div>{{ f }}</div>
+                <div>{{ f.errors }}</div>
+            {% endfor %}
+{#            <input type="submit" value="Подтвердить1" id="myformbut">#}
+            <input type="button" value="Подтвердить" id="fin2">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    height: 50px;
+    background-color: violet;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+main .card{
+    background-color: gainsboro;
+    border: 1px solid;
+    flex-basis: 200px;
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 10px;
+}
+
+main .card img{
+    width: 100%;
+}

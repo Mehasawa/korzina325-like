@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHOP</title>
+    <link rel="stylesheet" href="{% static '1.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{% static '1.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <a href="{% url 'toKorz' %}">
+            <button>Корзина</button>
+        </a>
+    </header>
+    <main>
+        {% for one in tovari %}
+        <div class="card">
+            <a href="{% url 'toIzbran' %}" onclick="f11(event,{{ one.id }})">
+                {% if  not one.izbran_set.values  %}
+                    <img src="{% static 'img/swhite.png' %}" alt="" class="serdze">
+                {% else %}
+                    <img src="{% static 'img/sred.png' %}" alt="" class="serdze">
+                {% endif %}
+            </a>
+            <img src="{% static one.image %}" alt="">
+            <p>{{ one.opis }}</p>
+            <p>{{ one.price }}Р</p>
+            <a href="{% url 'buy' one.id %}">
+
+                {% if one.vkorzine %}
+                <button>Уже</button>
+                {% else %}
+                <button>Купить {{ one.DoesNotExist}}</button>
+                {% endif %}
+            </a>
+        </div>
+        {% endfor %}
+    </main>
+    <img id='id1' src="" alt="">
+</body>
+</html>
